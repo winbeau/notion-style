@@ -33,6 +33,7 @@ At startup in `App.xaml.cs`, call `NotionThemeManager.Apply(NotionThemeMode.Syst
 
 From [`frameworks/csharp/NotionStyle.Wpf/`](../../frameworks/csharp/NotionStyle.Wpf/):
 
+- **Layout as Guidance**: Use WPF `Grid` split columns, toolbar status pills, and `NotionEyebrowTextStyle` headers to guide the operator spatially; avoid wordy instructional `TextBlock` paragraphs.
 - **Always bind brushes via `{DynamicResource Notion.*.Brush}`** (never `{StaticResource}`) inside views and control templates so runtime Light/Dark switching updates open windows immediately.
 - **Core Styles** ([`NotionControls.xaml`](../../frameworks/csharp/NotionStyle.Wpf/Themes/NotionControls.xaml)): `NotionCardBorderStyle`, `NotionSubtleCardBorderStyle`, `NotionSerifHeadingStyle`, `NotionEyebrowTextStyle`, `NotionMutedBodyStyle`, `NotionPrimaryButtonStyle`, `NotionQuietButtonStyle`, `NotionInputBoxStyle`.
 - **MVVM Commands**: [`RelayCommand.cs`](../../frameworks/csharp/NotionStyle.Wpf/Infrastructure/RelayCommand.cs) provides `RelayCommand` and non-reentrant `AsyncRelayCommand`.

@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Clock, Heart, MessageSquare } from 'lucide-react'
 import type { CategoryId } from '../../../core/generated/tokens'
 import { CategoryBadge } from './Badges'
-import { cn } from '../utils/cn'
+import { cn, splitHighlight } from '../utils/cn'
 
 export interface NotionCardProps extends React.HTMLAttributes<HTMLDivElement> {
   interactive?: boolean
@@ -39,6 +39,27 @@ export interface ArticleCardData {
   liked?: boolean
 }
 
+function HighlightedText({ text, query }: { text: string; query?: string | undefined }) {
+  if (!query || !query.trim()) return <>{text}</>
+  return (
+    <>
+      {splitHighlight(text, query).map((seg, i) =>
+        seg.matched ? (
+          <mark
+            key={i}
+            className="rounded-xs px-0.5 text-inherit"
+            style={{ backgroundColor: 'var(--highlight-flash-bg)' }}
+          >
+            {seg.text}
+          </mark>
+        ) : (
+          <React.Fragment key={i}>{seg.text}</React.Fragment>
+        ),
+      )}
+    </>
+  )
+}
+
 /**
  * Generalized Editorial Card (distilled from xju-feiyue `NoteCard.tsx`).
  * Combines CategoryBadge + serif title + 2-line muted summary + author footer.
@@ -46,11 +67,13 @@ export interface ArticleCardData {
 export function NotionArticleCard({
   item,
   compact = false,
+  highlightQuery,
   onLike,
   className,
 }: {
   item: ArticleCardData
   compact?: boolean
+  highlightQuery?: string | undefined
   onLike?: (id: string) => void
   className?: string
 }) {
@@ -66,7 +89,7 @@ export function NotionArticleCard({
       <div className="mb-2 flex items-center gap-2 text-xs text-text-faint">
         <CategoryBadge categoryId={item.category} variant="chip" />
         <span className="inline-flex items-center gap-1 font-mono text-[11px]">
-          <Clock size={12} aria-hidden /> {item.readMinutes} min
+          <Clock size={12} aria-hidden /> {item.readMinutes}m
         </span>
       </div>
 
@@ -76,18 +99,18 @@ export function NotionArticleCard({
           compact ? 'text-base' : 'text-lg',
         )}
       >
-        {item.title}
+        <HighlightedText text={item.title} query={highlightQuery} />
       </h3>
 
       {!compact && (
         <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-text-muted">
-          {item.summary}
+          <HighlightedText text={item.summary} query={highlightQuery} />
         </p>
       )}
 
       <div className="mt-auto flex items-center justify-between pt-2 text-xs text-text-faint">
         <span className="inline-flex items-center gap-1.5">
-          <span className="inline-flex size-5 items-center justify-center rounded-full bg-bg-subtle font-mono text-[10px] font-medium text-text border border-border-subtle">
+          <span className="inline-flex size-5 items-center justify-center rounded-full border border-border-subtle bg-bg-subtle font-mono text-[10px] font-medium text-text">
             {item.authorName.slice(0, 1).toUpperCase()}
           </span>
           <span className="text-text-muted">{item.authorName}</span>

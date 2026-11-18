@@ -44,5 +44,6 @@ Copy from [`frameworks/vue-ts/`](../../frameworks/vue-ts/):
 
 ## 3. Verification Checklist
 
+- **Layout as Guidance**: Replace instructional paragraphs under headings with spatial cues (`① → ② → ③` step slots, left-config/right-preview panes, and inline mono spec badges).
 - Run `vue-tsc --noEmit` to validate `<script setup lang="ts">` props and emits.
 - Check `el-button`, `el-input`, `el-table`, `el-tag`, and `el-dialog` under both Light and `.dark` modes.

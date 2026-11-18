@@ -31,6 +31,7 @@ Copy or import directly from [`frameworks/react-ts/`](../../frameworks/react-ts/
 
 ## 3. Verification Checklist
 
+- **Layout as Guidance**: Verify section headers have zero redundant subtitle paragraphs; express workflows via numbered slots (`① → ② → ③`), split panes, or compact mono spec pills.
 - Run `tsc -b --noEmit` to verify strict TypeScript compliance.
 - Toggle `html.dark` and verify zero hardcoded white/black contrast regressions.
-- Confirm every query view renders `LoadingSkeleton`, `EmptyState`, and `ErrorState`.
+- Confirm every query view renders `LoadingSkeleton`, `EmptyState`, and `ErrorState` in-place within the same container.

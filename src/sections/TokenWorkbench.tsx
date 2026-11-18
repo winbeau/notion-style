@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Check, RotateCcw, Sliders, Sparkles } from 'lucide-react'
+import { Check, ChevronRight, Code2, RotateCcw } from 'lucide-react'
 import {
   CATEGORIES,
   NOTION_TOKENS,
@@ -15,12 +15,13 @@ import {
   NotionCard,
   StatusBadge,
 } from '../../frameworks/react-ts'
+import { SectionHeader } from '../components/SectionHeader'
 
 const BRAND_PRESETS = [
-  { id: 'charcoal', label: 'Notion 炭黑', hex: '#37352f', hover: '#25231f', note: 'xju-feiyue / xju-OJ 默认' },
-  { id: 'forest', label: 'Sift 森绿', hex: '#316d5c', hover: '#265648', note: 'email-sift 原生桌面色' },
-  { id: 'ocean', label: '学术深青', hex: '#0b6e99', hover: '#085577', note: '数据 / 科研工具主色' },
-  { id: 'crimson', label: '新大绛红', hex: '#b8405e', hover: '#96324b', note: '竞赛 / 纪念专题主色' },
+  { id: 'charcoal', label: 'Charcoal', hex: '#37352f', hover: '#25231f' },
+  { id: 'forest', label: 'Forest', hex: '#316d5c', hover: '#265648' },
+  { id: 'ocean', label: 'Ocean', hex: '#0b6e99', hover: '#085577' },
+  { id: 'crimson', label: 'Crimson', hex: '#b8405e', hover: '#96324b' },
 ] as const
 
 function hexToHslTriplet(hex: string): string {
@@ -97,7 +98,7 @@ export function TokenWorkbench({ resolvedTheme }: { resolvedTheme: ThemeMode }) 
     try {
       await navigator.clipboard.writeText(`var(${tokenName})`)
       setCopiedVar(tokenName)
-      setTimeout(() => setCopiedVar(null), 1500)
+      setTimeout(() => setCopiedVar(null), 1400)
     } catch {
       /* ignore */
     }
@@ -109,72 +110,49 @@ export function TokenWorkbench({ resolvedTheme }: { resolvedTheme: ThemeMode }) 
   const patchJson = JSON.stringify(
     {
       themes: {
-        light: {
-          brand: {
-            primary: brandHex,
-            primaryHover: brandHex,
-            primaryFg: '#ffffff',
-          },
-        },
+        light: { brand: { primary: brandHex, primaryHover: brandHex, primaryFg: '#ffffff' } },
       },
-      radii: {
-        sm: activeRadius.sm,
-        md: activeRadius.md,
-        lg: activeRadius.lg,
-      },
+      radii: { sm: activeRadius.sm, md: activeRadius.md, lg: activeRadius.lg },
     },
     null,
     2,
   )
 
   const coreSwatches = [
-    { name: '--color-bg', label: 'Canvas 画布', val: activePalette.surface.bg },
-    { name: '--color-bg-subtle', label: 'Subtle 次表面', val: activePalette.surface.bgSubtle },
-    { name: '--bg-hover', label: 'Hover 悬停底', val: activePalette.surface.bgHover },
-    { name: '--color-text', label: 'Primary 正文墨色', val: activePalette.text.primary },
-    { name: '--color-text-muted', label: 'Muted 次级文字', val: activePalette.text.muted },
-    { name: '--color-text-faint', label: 'Faint 辅助文字', val: activePalette.text.faint },
-    { name: '--color-border', label: 'Border 发丝边', val: activePalette.border.subtle },
-    { name: '--line-strong', label: 'Border Strong 强边', val: activePalette.border.strong },
-    { name: '--color-primary', label: 'Brand 主操作色', val: brandHex },
-    { name: '--color-link', label: 'Link 链接焦点色', val: activePalette.brand.link },
+    { name: '--color-bg', role: 'Canvas', val: activePalette.surface.bg },
+    { name: '--color-bg-subtle', role: 'Subtle', val: activePalette.surface.bgSubtle },
+    { name: '--bg-hover', role: 'Hover', val: activePalette.surface.bgHover },
+    { name: '--color-text', role: 'Ink', val: activePalette.text.primary },
+    { name: '--color-text-muted', role: 'Muted', val: activePalette.text.muted },
+    { name: '--color-text-faint', role: 'Faint', val: activePalette.text.faint },
+    { name: '--color-border', role: 'Border', val: activePalette.border.subtle },
+    { name: '--line-strong', role: 'Strong', val: activePalette.border.strong },
+    { name: '--color-primary', role: 'Primary', val: brandHex },
+    { name: '--color-link', role: 'Link', val: activePalette.brand.link },
   ]
 
   return (
-    <section id="tokens" className="space-y-8 scroll-mt-20">
-      <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border-subtle pb-4">
-        <div>
-          <p className="font-mono text-xs uppercase tracking-widest text-text-faint">
-            01 · Single Source of Truth & Micro-Tuner
-          </p>
-          <h2 className="mt-1 font-serif text-2xl font-bold text-text">
-            30 秒微调工作台与核心 Token 矩阵
-          </h2>
-          <p className="mt-1 text-sm text-text-muted">
-            以后新开项目只需微调主色与圆角档位，运行 <code className="rounded-xs bg-bg-subtle px-1.5 py-0.5 font-mono text-xs text-text">pnpm tokens:build</code> 即可同步生成五端主题文件。
-          </p>
-        </div>
-        <div className="flex items-center gap-2">
-          <NotionButton variant="outline" size="sm" onClick={() => setShowPatch((s) => !s)}>
-            <Sparkles size={14} />
-            {showPatch ? '收起微调配置' : '导出 tokens.json 微调补丁'}
-          </NotionButton>
-          <NotionButton variant="ghost" size="sm" onClick={resetAll}>
-            <RotateCcw size={14} />
-            还原默认
-          </NotionButton>
-        </div>
-      </div>
+    <section id="tokens" className="space-y-5 scroll-mt-20">
+      <SectionHeader
+        index="01"
+        title="Tokens & Micro-Tune"
+        right={
+          <span className="rounded-xs border border-border-subtle bg-bg-subtle px-2 py-0.5 font-mono text-[11px] text-text-muted">
+            core/tokens.json → 7 Outputs
+          </span>
+        }
+      />
 
-      {/* Live Micro-Tuner Controls */}
-      <NotionCard subtle className="p-5">
-        <div className="grid gap-6 lg:grid-cols-2">
-          <div className="space-y-2.5">
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-text-muted">
-              <Sliders size={13} />
-              <span>主强调色微调 (Brand Primary)</span>
+      {/* 3-Slot Spatial Stepper: ① Brand -> ② Radius -> ③ Export/Build */}
+      <NotionCard subtle className="p-3.5">
+        <div className="grid items-center gap-3 lg:grid-cols-[1.15fr_auto_1.05fr_auto_auto]">
+          {/* Step 1: Brand */}
+          <div className="rounded-sm border border-border-subtle bg-bg p-3">
+            <div className="mb-2 flex items-center justify-between font-mono text-[10.5px] uppercase tracking-wider text-text-faint">
+              <span>① Brand Primary</span>
+              <span>{brandHex}</span>
             </div>
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center gap-1.5">
               {BRAND_PRESETS.map((p) => {
                 const active = brandHex.toLowerCase() === p.hex.toLowerCase()
                 return (
@@ -182,38 +160,47 @@ export function TokenWorkbench({ resolvedTheme }: { resolvedTheme: ThemeMode }) 
                     key={p.id}
                     type="button"
                     onClick={() => applyBrand(p.hex, p.hover)}
-                    className={`inline-flex items-center gap-2 rounded-sm border px-3 py-1.5 text-xs font-medium transition ${
+                    className={`inline-flex items-center gap-1.5 rounded-xs border px-2.5 py-1 text-xs font-medium transition ${
                       active
-                        ? 'border-border-strong bg-bg text-text shadow-card'
-                        : 'border-border-subtle bg-bg/60 text-text-muted hover:bg-bg hover:text-text'
+                        ? 'border-border-strong bg-bg-subtle text-text'
+                        : 'border-border-subtle bg-bg text-text-muted hover:text-text'
                     }`}
                   >
                     <span
-                      className="size-3 rounded-full border border-black/10"
+                      className="size-2.5 rounded-full"
                       style={{ backgroundColor: p.hex }}
                     />
                     <span>{p.label}</span>
                   </button>
                 )
               })}
-              <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-sm border border-border-subtle bg-bg px-2.5 py-1 text-xs text-text-muted hover:border-border-strong">
+              <label
+                title="Custom Hex"
+                className="inline-flex h-[26px] cursor-pointer items-center gap-1 rounded-xs border border-dashed border-border-strong px-2 font-mono text-[11px] text-text-muted hover:text-text"
+              >
                 <input
                   type="color"
                   value={brandHex}
                   onChange={(e) => applyBrand(e.target.value)}
-                  className="size-4 cursor-pointer border-0 bg-transparent p-0"
-                  aria-label="自定义主色"
+                  className="size-3.5 cursor-pointer border-0 bg-transparent p-0"
+                  aria-label="Custom Brand Hex"
                 />
-                <span className="font-mono">{brandHex}</span>
+                <span>Custom</span>
               </label>
             </div>
           </div>
 
-          <div className="space-y-2.5">
-            <div className="text-xs font-semibold uppercase tracking-wider text-text-muted">
-              圆角密度档位 (Radius Scale Preset)
+          <ChevronRight size={15} className="hidden text-text-faint lg:block" />
+
+          {/* Step 2: Radius */}
+          <div className="rounded-sm border border-border-subtle bg-bg p-3">
+            <div className="mb-2 flex items-center justify-between font-mono text-[10.5px] uppercase tracking-wider text-text-faint">
+              <span>② Radius Scale</span>
+              <span>
+                {activeRadius.sm} / {activeRadius.md} / {activeRadius.lg}px
+              </span>
             </div>
-            <div className="grid gap-2 sm:grid-cols-3">
+            <div className="grid grid-cols-3 gap-1.5">
               {(Object.keys(NOTION_TOKENS.radii.presets) as RadiusPresetId[]).map((id) => {
                 const preset = NOTION_TOKENS.radii.presets[id]
                 const active = radiusPreset === id
@@ -222,86 +209,113 @@ export function TokenWorkbench({ resolvedTheme }: { resolvedTheme: ThemeMode }) 
                     key={id}
                     type="button"
                     onClick={() => applyRadius(id)}
-                    className={`flex flex-col items-start rounded-sm border p-2.5 text-left transition ${
+                    className={`flex items-center justify-center gap-1.5 rounded-xs border py-1 font-mono text-xs transition ${
                       active
-                        ? 'border-border-strong bg-bg text-text shadow-card'
-                        : 'border-border-subtle bg-bg/60 text-text-muted hover:bg-bg hover:text-text'
+                        ? 'border-border-strong bg-bg-subtle font-semibold text-text'
+                        : 'border-border-subtle bg-bg text-text-muted hover:text-text'
                     }`}
                   >
-                    <span className="font-mono text-xs font-semibold text-text">
-                      {id} ({preset.sm}/{preset.md}/{preset.lg}px)
-                    </span>
-                    <span className="mt-0.5 line-clamp-1 text-[11px] text-text-faint">
-                      {preset.desc}
-                    </span>
+                    <span
+                      aria-hidden
+                      className="inline-block size-3 border border-current"
+                      style={{ borderRadius: `${Math.min(preset.sm, 6)}px` }}
+                    />
+                    <span>{id}</span>
                   </button>
                 )
               })}
             </div>
           </div>
+
+          <ChevronRight size={15} className="hidden text-text-faint lg:block" />
+
+          {/* Step 3: Output / Sync */}
+          <div className="flex flex-col gap-1.5 rounded-sm border border-border-subtle bg-bg p-3">
+            <span className="font-mono text-[10.5px] uppercase tracking-wider text-text-faint">
+              ③ Sync All Stacks
+            </span>
+            <div className="flex items-center gap-1.5">
+              <NotionButton
+                variant={showPatch ? 'primary' : 'outline'}
+                size="sm"
+                onClick={() => setShowPatch((s) => !s)}
+              >
+                <Code2 size={13} />
+                tokens.json
+              </NotionButton>
+              <NotionButton
+                variant="ghost"
+                size="icon"
+                className="size-8"
+                onClick={resetAll}
+                title="Reset"
+                aria-label="Reset tokens"
+              >
+                <RotateCcw size={13} />
+              </NotionButton>
+            </div>
+          </div>
         </div>
 
         {showPatch ? (
-          <div className="mt-4">
+          <div className="mt-3">
             <CodeBlock
               language="json"
-              title="core/tokens.json 微调片段 — 修改后执行 pnpm tokens:build"
+              title="core/tokens.json → run `pnpm tokens:build`"
               code={patchJson}
-              maxHeightClass="max-h-56"
+              maxHeightClass="max-h-48"
             />
           </div>
         ) : null}
       </NotionCard>
 
-      {/* Surface & Ink Swatches */}
-      <div className="space-y-3">
-        <div className="flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-text">
-            基底与墨色槽位（当前模式：{resolvedTheme === 'dark' ? 'Dark 开发者冷灰' : 'Light 暖白纸感'} · 点击复制 CSS 变量）
-          </h3>
-        </div>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
-          {coreSwatches.map((s) => (
-            <button
-              key={s.name}
-              type="button"
-              onClick={() => copyToken(s.name)}
-              className="group flex flex-col overflow-hidden rounded-md border border-border-subtle bg-bg text-left shadow-card transition hover:border-border-strong"
-            >
-              <div
-                className="h-12 w-full border-b border-border-subtle"
-                style={{ backgroundColor: `var(${s.name})` }}
-              />
-              <div className="p-2.5">
-                <div className="flex items-center justify-between gap-1">
-                  <span className="text-xs font-medium text-text">{s.label}</span>
-                  {copiedVar === s.name ? (
-                    <Check size={12} className="text-status-success-fg" />
-                  ) : null}
-                </div>
-                <div className="mt-0.5 font-mono text-[11px] text-text-muted">{s.name}</div>
-                <div className="font-mono text-[10.5px] text-text-faint">{s.val}</div>
+      {/* Surface & Ink Swatches (Hover cue replaces text instructions) */}
+      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-5">
+        {coreSwatches.map((s) => (
+          <button
+            key={s.name}
+            type="button"
+            onClick={() => copyToken(s.name)}
+            className="group relative flex flex-col overflow-hidden rounded-md border border-border-subtle bg-bg text-left shadow-card transition hover:border-border-strong"
+          >
+            <div
+              className="h-10 w-full border-b border-border-subtle"
+              style={{ backgroundColor: `var(${s.name})` }}
+            />
+            <span className="pointer-events-none absolute right-1.5 top-1.5 rounded-xs border border-border-subtle bg-bg/90 px-1.5 py-0.5 font-mono text-[9.5px] text-text-muted opacity-0 transition group-hover:opacity-100">
+              {copiedVar === s.name ? 'Copied' : 'Copy var()'}
+            </span>
+            <div className="p-2.5">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-text">{s.role}</span>
+                {copiedVar === s.name ? (
+                  <Check size={12} className="text-status-success-fg" />
+                ) : (
+                  <span className="font-mono text-[10px] text-text-faint">{s.val}</span>
+                )}
               </div>
-            </button>
-          ))}
-        </div>
+              <div className="mt-0.5 truncate font-mono text-[10.5px] text-text-muted">
+                {s.name}
+              </div>
+            </div>
+          </button>
+        ))}
       </div>
 
-      {/* 7 Categories + 4 Status Triads */}
+      {/* 7 Categories + 4 Status Anatomy Matrix */}
       <div className="grid gap-4 lg:grid-cols-2">
-        <NotionCard className="p-5">
-          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-            <div>
-              <h3 className="text-sm font-semibold text-text">7 类领域强调色与 12% Alpha 胶囊</h3>
-              <p className="text-xs text-text-muted">源自 xju-feiyue / xju-OJ 多维分类体系</p>
-            </div>
-            <div className="inline-flex rounded-sm border border-border-subtle bg-bg-subtle p-0.5 text-xs">
+        <NotionCard className="p-4">
+          <div className="mb-3 flex items-center justify-between border-b border-border-subtle pb-2.5">
+            <span className="font-mono text-xs font-semibold text-text">
+              Domain Categories (7)
+            </span>
+            <div className="inline-flex rounded-xs border border-border-subtle bg-bg-subtle p-0.5 font-mono text-[11px]">
               {(['dot', 'chip', 'icon-chip', 'full'] as CategoryBadgeVariant[]).map((v) => (
                 <button
                   key={v}
                   type="button"
                   onClick={() => setBadgeVariant(v)}
-                  className={`rounded-xs px-2 py-0.5 font-mono text-[11px] transition ${
+                  className={`rounded-xs px-2 py-0.5 transition ${
                     badgeVariant === v ? 'bg-bg text-text shadow-card' : 'text-text-muted hover:text-text'
                   }`}
                 >
@@ -313,8 +327,8 @@ export function TokenWorkbench({ resolvedTheme }: { resolvedTheme: ThemeMode }) 
           <div
             className={
               badgeVariant === 'full'
-                ? 'grid grid-cols-2 gap-3 pt-1 sm:grid-cols-3'
-                : 'flex flex-wrap items-center gap-2.5 pt-2'
+                ? 'grid grid-cols-2 gap-3 sm:grid-cols-3'
+                : 'flex flex-wrap items-center gap-2 py-1'
             }
           >
             {CATEGORIES.map((c) => (
@@ -323,23 +337,34 @@ export function TokenWorkbench({ resolvedTheme }: { resolvedTheme: ThemeMode }) 
           </div>
         </NotionCard>
 
-        <NotionCard className="p-5">
-          <div className="mb-3">
-            <h3 className="text-sm font-semibold text-text">4 态通用语义三元组 (fg / bg / border)</h3>
-            <p className="text-xs text-text-muted">
-              统一 AI Diff 增删、OJ 判题 AC/WA、CS336 闯关状态与系统通知条
-            </p>
+        <NotionCard className="p-4">
+          <div className="mb-3 flex items-center justify-between border-b border-border-subtle pb-2.5 font-mono text-xs">
+            <span className="font-semibold text-text">Status Triads (4)</span>
+            <span className="text-[10.5px] text-text-faint">fg · 12% bg · 32% border</span>
           </div>
-          <div className="grid grid-cols-2 gap-2.5 pt-1">
+          <div className="grid grid-cols-2 gap-2">
             {STATUS_IDS.map((st) => {
               const info = NOTION_TOKENS.statuses[st]
               return (
                 <div
                   key={st}
-                  className="flex items-center justify-between rounded-sm border border-border-subtle bg-bg-subtle/60 px-3 py-2"
+                  className="flex items-center justify-between rounded-sm border border-border-subtle bg-bg-subtle/50 px-2.5 py-2"
                 >
                   <StatusBadge status={st} label={info.label} />
-                  <span className="font-mono text-[11px] text-text-faint">--status-{st}-*</span>
+                  <div className="flex items-center gap-1" title={`--status-${st}-{fg,bg,border}`}>
+                    <span
+                      className="size-3 rounded-xs border border-black/10"
+                      style={{ backgroundColor: `var(--status-${st}-fg)` }}
+                    />
+                    <span
+                      className="size-3 rounded-xs border border-black/10"
+                      style={{ backgroundColor: `var(--status-${st}-bg)` }}
+                    />
+                    <span
+                      className="size-3 rounded-xs border-2 bg-transparent"
+                      style={{ borderColor: `var(--status-${st}-border)` }}
+                    />
+                  </div>
                 </div>
               )
             })}

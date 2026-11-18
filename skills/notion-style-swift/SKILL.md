@@ -27,6 +27,7 @@ Add [`frameworks/swift`](../../frameworks/swift/Package.swift) as a local Swift 
 
 ## 2. macOS Ergonomics Guardrails
 
+- **Layout as Guidance**: Prefer macOS `HSplitView` / `NavigationSplitView`, inspector sidebars, and `NotionEyebrow` + inline status pills over explanatory description blocks.
 - Always attach `.contentShape(Rectangle())` inside custom `ButtonStyle`s on macOS so clicks outside glyph bounds still register.
 - Keep desktop window typography crisp: `12.5–13.5pt` body/controls, `20–26pt` `.semibold` window headers, `11pt` monospaced log panes (`AppKit` `NSTextView` or SwiftUI `ScrollView`).
 - Verify compilation with `swift build` before finishing.

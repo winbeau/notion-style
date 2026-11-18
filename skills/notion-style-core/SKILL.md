@@ -25,6 +25,11 @@ Use this skill to establish or audit visual, interaction, and wire-format consis
    - Flat cards use `1px solid var(--color-border)` + `0 1px 2px rgba(0,0,0,0.04)`. Reserve medium/large shadows strictly for popovers and dialogs.
 4. **Universal 4-State Semantic Triads (`fg` + `12-15% bg` + `32% border`)**:
    - Reuse `success`, `warning`, `danger`, `neutral` across form validation, OJ verdicts, AI diffs, and status pills.
+5. **Layout as Guidance — Eliminate Redundant Explanatory Prose (Show, Don't Tell)**:
+   - **Never write helper paragraphs under section headers or inside cards to explain how the UI works.** If an interface needs a 2-sentence caption to explain what a button or tab does, fix the layout instead.
+   - Express workflow order via numbered spatial slots (`① → ② → ③`), directional chevrons, or Master-Detail split panes (`Inputs on left → Live resolved output on right`).
+   - Express technical specs and constraints via compact monospaced key-value pills (`720px · 1.75lh`, `CamelModel · ISO-8601 Z`) or aligned marginalia rails rather than prose sentences.
+   - Keep feedback co-located with its trigger (e.g., highlight search matches directly inside target cards, show resolved install paths directly beside toggles, morph async states in-place within the same list frame).
 
 ## 2. Mandatory Behavioral Contracts
 

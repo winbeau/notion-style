@@ -1,9 +1,5 @@
-import { BookOpen, Github, Moon, Sparkles, Sun } from 'lucide-react'
-import {
-  CategoryBadge,
-  NotionButton,
-  useNotionTheme,
-} from '../frameworks/react-ts'
+import { ArrowDownRight, ArrowRight, Github, Moon, Sparkles, Sun } from 'lucide-react'
+import { NotionButton, useNotionTheme } from '../frameworks/react-ts'
 import { TokenWorkbench } from './sections/TokenWorkbench'
 import { ComponentSandbox } from './sections/ComponentSandbox'
 import { ProseShowcase } from './sections/ProseShowcase'
@@ -12,12 +8,36 @@ import { SkillRegistryHub } from './sections/SkillRegistryHub'
 import { RepoLineageSection } from './sections/RepoLineageSection'
 
 const NAV_ITEMS = [
-  { href: '#tokens', label: '微调与色板' },
-  { href: '#sandbox', label: '组件沙盒' },
-  { href: '#prose', label: '衬线排版' },
-  { href: '#frameworks', label: '五框架源码' },
-  { href: '#skills', label: 'Skill 注册台' },
-  { href: '#lineage', label: '仓库溯源' },
+  { href: '#tokens', idx: '01', label: 'Tokens' },
+  { href: '#sandbox', idx: '02', label: 'Primitives' },
+  { href: '#prose', idx: '03', label: 'Prose' },
+  { href: '#frameworks', idx: '04', label: 'Frameworks' },
+  { href: '#skills', idx: '05', label: 'Skills' },
+  { href: '#lineage', idx: '06', label: 'Lineage' },
+] as const
+
+const HERO_PIPELINE = [
+  {
+    step: '01',
+    href: '#tokens',
+    title: 'core/tokens.json',
+    badge: 'Single Source',
+    pills: ['Light #ffffff', 'Dark #0d1117', '7 Cats · 4 Statuses'],
+  },
+  {
+    step: '02',
+    href: '#frameworks',
+    title: 'frameworks/*',
+    badge: '5 Stacks',
+    pills: ['React-TS', 'Vue-TS', 'Swift', 'C# WPF', 'FastAPI'],
+  },
+  {
+    step: '03',
+    href: '#skills',
+    title: 'skills/* → register',
+    badge: '5 Agents',
+    pills: ['Claude', 'Codex', 'Antigravity', 'Cursor', 'Gemini'],
+  },
 ] as const
 
 export function App() {
@@ -25,7 +45,7 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-bg text-text">
-      {/* Sticky Editorial Header */}
+      {/* Sticky Header */}
       <header className="sticky top-0 z-40 border-b border-border-subtle bg-bg/90 backdrop-blur">
         <div className="mx-auto flex h-14 max-w-[1160px] items-center justify-between gap-4 px-4 sm:px-6">
           <a href="#" className="flex items-center gap-2.5 text-text">
@@ -40,27 +60,29 @@ export function App() {
             </span>
           </a>
 
-          <nav aria-label="站点导航" className="hidden items-center gap-1 md:flex">
+          <nav aria-label="站点导航" className="hidden items-center gap-0.5 md:flex">
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="rounded-sm px-2.5 py-1.5 text-xs font-medium text-text-muted transition hover:bg-bg-subtle hover:text-text"
+                className="inline-flex items-center gap-1.5 rounded-sm px-2.5 py-1.5 text-xs font-medium text-text-muted transition hover:bg-bg-subtle hover:text-text"
               >
-                {item.label}
+                <span className="font-mono text-[10px] text-text-faint">{item.idx}</span>
+                <span>{item.label}</span>
               </a>
             ))}
           </nav>
 
           <div className="flex items-center gap-2">
             <NotionButton
-              variant="ghost"
-              size="icon"
+              variant="outline"
+              size="sm"
               onClick={toggleTheme}
-              aria-label={resolvedTheme === 'dark' ? '切换至亮色纸感模式' : '切换至暗色开发者模式'}
-              title={resolvedTheme === 'dark' ? '切换亮色模式' : '切换暗色模式'}
+              aria-label="切换亮暗主题"
+              className="font-mono text-xs"
             >
-              {resolvedTheme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+              {resolvedTheme === 'dark' ? <Sun size={13} /> : <Moon size={13} />}
+              <span>{resolvedTheme === 'dark' ? 'Dark' : 'Light'}</span>
             </NotionButton>
 
             <a
@@ -76,47 +98,100 @@ export function App() {
         </div>
       </header>
 
-      {/* Ambient Paper Hero */}
+      {/* Split Hero: Headline Left + Interactive System Topology Right */}
       <section className="hero-paper-backdrop border-b border-border-subtle">
-        <div className="mx-auto max-w-[1160px] px-4 py-14 sm:px-6 sm:py-20">
-          <div className="flex flex-wrap items-center gap-2">
-            <CategoryBadge categoryId="tools" variant="icon-chip" />
-            <span className="font-mono text-xs text-text-faint">
-              React-TS · Vue-TS · Swift · C# · FastAPI · Multi-Agent Skills
-            </span>
+        <div className="mx-auto grid max-w-[1160px] items-center gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:py-16">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-xs border border-border-subtle bg-bg/80 px-2.5 py-1 font-mono text-[11px] text-text-muted">
+              <span className="size-1.5 rounded-full bg-cat-tools" />
+              <span>Design System · Cross-Framework · Agent-Ready</span>
+            </div>
+
+            <h1 className="mt-4 font-serif text-3xl font-bold leading-[1.18] tracking-tight text-text sm:text-[2.65rem]">
+              单一纸感色源，
+              <br />
+              微调即同步五端与全平台 Agent。
+            </h1>
+
+            <div className="mt-4 flex flex-wrap gap-1.5 font-mono text-[11px] text-text-muted">
+              <span className="rounded-xs border border-border-subtle bg-bg/80 px-2 py-0.5">
+                Source Serif 4 + Inter Tight
+              </span>
+              <span className="rounded-xs border border-border-subtle bg-bg/80 px-2 py-0.5">
+                Bare JSON · {'{detail}'}
+              </span>
+              <span className="rounded-xs border border-border-subtle bg-bg/80 px-2 py-0.5">
+                Layout as Guidance
+              </span>
+            </div>
+
+            <div className="mt-7 flex flex-wrap items-center gap-2.5">
+              <a href="#skills">
+                <NotionButton variant="primary" size="lg">
+                  <Sparkles size={15} /> 一键注册 Skills
+                </NotionButton>
+              </a>
+              <a href="#tokens">
+                <NotionButton variant="outline" size="lg">
+                  在线微调色板 <ArrowRight size={14} />
+                </NotionButton>
+              </a>
+            </div>
           </div>
 
-          <h1 className="mt-4 max-w-3xl font-serif text-3xl font-bold leading-tight tracking-tight text-text sm:text-5xl">
-            一套沉稳纸感范式，贯通五端开发与全平台 Agent 技能。
-          </h1>
+          {/* Spatial Topology Map (Replaces Explanatory Paragraph) */}
+          <div className="rounded-lg border border-border-subtle bg-bg/90 p-4 shadow-panel backdrop-blur">
+            <div className="mb-3 flex items-center justify-between border-b border-border-subtle pb-2 font-mono text-[10.5px] uppercase tracking-wider text-text-faint">
+              <span>System Topology</span>
+              <span>Click stage to jump</span>
+            </div>
 
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
-            萃取自 <code className="rounded-xs bg-bg-subtle px-1.5 py-0.5 font-mono text-xs text-text">xju-feiyue</code>、
-            <code className="rounded-xs bg-bg-subtle px-1.5 py-0.5 font-mono text-xs text-text">xju-OJ</code>、
-            <code className="rounded-xs bg-bg-subtle px-1.5 py-0.5 font-mono text-xs text-text">auth-login</code>、
-            <code className="rounded-xs bg-bg-subtle px-1.5 py-0.5 font-mono text-xs text-text">email-sift</code> 与{' '}
-            <code className="rounded-xs bg-bg-subtle px-1.5 py-0.5 font-mono text-xs text-text">FastFinder</code>。
-            由单一 <code className="rounded-xs bg-bg-subtle px-1.5 py-0.5 font-mono text-xs text-text">core/tokens.json</code>{' '}
-            驱动亮暗双主题、组件原语、无信封通信契约与一键跨平台 Skill 注册，新项目开箱只需微调。
-          </p>
-
-          <div className="mt-7 flex flex-wrap items-center gap-3">
-            <a href="#skills">
-              <NotionButton variant="primary" size="lg">
-                <Sparkles size={15} /> 一键注册全平台 Skills
-              </NotionButton>
-            </a>
-            <a href="#frameworks">
-              <NotionButton variant="outline" size="lg">
-                <BookOpen size={15} /> 浏览五框架源码套件
-              </NotionButton>
-            </a>
+            <div className="space-y-2">
+              {HERO_PIPELINE.map((stage, i) => (
+                <div key={stage.step}>
+                  <a
+                    href={stage.href}
+                    className="group flex flex-col gap-2 rounded-md border border-border-subtle bg-bg-subtle/60 p-3 transition hover:border-border-strong hover:bg-bg"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-[11px] font-semibold text-text-faint">
+                          {stage.step}
+                        </span>
+                        <span className="font-mono text-xs font-semibold text-text">
+                          {stage.title}
+                        </span>
+                      </div>
+                      <span className="inline-flex items-center gap-1 rounded-xs border border-border-subtle bg-bg px-1.5 py-0.5 font-mono text-[10px] text-text-muted group-hover:border-border-strong group-hover:text-text">
+                        {stage.badge}
+                        <ArrowDownRight size={11} />
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {stage.pills.map((pill) => (
+                        <span
+                          key={pill}
+                          className="rounded-xs bg-bg px-2 py-0.5 font-mono text-[10.5px] text-text-muted border border-border-subtle/80"
+                        >
+                          {pill}
+                        </span>
+                      ))}
+                    </div>
+                  </a>
+                  {i < HERO_PIPELINE.length - 1 ? (
+                    <div aria-hidden className="flex justify-center py-0.5 font-mono text-[10px] text-text-faint">
+                      ↓
+                    </div>
+                  ) : null}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Main Content */}
-      <main className="mx-auto max-w-[1160px] space-y-20 px-4 py-14 sm:px-6">
+      <main className="mx-auto max-w-[1160px] space-y-16 px-4 py-12 sm:px-6">
         <TokenWorkbench resolvedTheme={resolvedTheme} />
         <ComponentSandbox />
         <ProseShowcase />
@@ -125,17 +200,11 @@ export function App() {
         <RepoLineageSection />
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-border-subtle bg-bg-subtle/60">
-        <div className="mx-auto flex max-w-[1160px] flex-wrap items-center justify-between gap-4 px-4 py-8 text-xs text-text-muted sm:px-6">
-          <div className="flex items-center gap-2">
-            <span className="font-serif font-semibold text-text">Notion-Style</span>
-            <span>·</span>
-            <span>Cross-Framework Design Paradigm & Skill Resource Station</span>
-          </div>
-          <div className="font-mono text-[11px] text-text-faint">
-            Single Source: core/tokens.json → CSS · TS · Vue · Swift · XAML · FastAPI
-          </div>
+      {/* Minimal Spec Footer */}
+      <footer className="border-t border-border-subtle bg-bg-subtle/50">
+        <div className="mx-auto flex max-w-[1160px] flex-wrap items-center justify-between gap-4 px-4 py-6 font-mono text-[11px] text-text-faint sm:px-6">
+          <span>winbeau/notion-style · MIT</span>
+          <span>core/tokens.json → CSS · TS · Vue · Swift · XAML · FastAPI</span>
         </div>
       </footer>
     </div>
