@@ -1,0 +1,14 @@
+{
+  "name": "notion-style",
+  "displayName": "Notion-Style Design System",
+  "version": "1.0.0",
+  "description": "Cross-framework Notion-Style design tokens, UI primitives, wire contracts, and skills for React-TS, Vue-TS, Swift, C#, and FastAPI.",
+  "logo": "assets/logo.svg",
+  "author": "winbeau",
+  "repository": "https://github.com/winbeau/notion-style",
+  "suggestedPrompts": [
+    "Apply Notion-Style tokens and components to this React-TS / Vue-TS project",
+    "Scaffold a FastAPI endpoint following the Notion-Style CamelModel and {detail} contract",
+    "Micro-tune core/tokens.json and recompile tokens across all frameworks"
+  ]
+}

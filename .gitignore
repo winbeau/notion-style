@@ -1,0 +1,26 @@
+# Dependencies & build outputs
+node_modules/
+dist/
+.vite/
+
+# Swift & Python local artifacts
+frameworks/swift/.build/
+frameworks/swift/.swiftpm/
+**/__pycache__/
+**/*.pyc
+.pytest_cache/
+.venv/
+
+# C# local build artifacts
+frameworks/csharp/**/bin/
+frameworks/csharp/**/obj/
+
+# Local agent directories (skills/ and .agents/skills are tracked)
+.claude/
+.codex/
+.cursor/
+
+# OS & Editor
+.DS_Store
+*.log
+.env.local

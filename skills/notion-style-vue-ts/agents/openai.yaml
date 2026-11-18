@@ -1,0 +1,4 @@
+interface:
+  display_name: "Notion-Style Vue-TS"
+  short_description: "Vue 3 + TypeScript + Element Plus Notion theme bridge & SFCs"
+  default_prompt: "Apply the Notion-Style Vue 3 + Element Plus theme bridge and three-state SFCs."

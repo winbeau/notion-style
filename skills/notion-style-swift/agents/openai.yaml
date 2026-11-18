@@ -1,0 +1,4 @@
+interface:
+  display_name: "Notion-Style Swift"
+  short_description: "macOS & iOS SwiftUI/AppKit NotionStyleKit adaptive components"
+  default_prompt: "Build this SwiftUI/AppKit view using NotionStyleKit tokens and button/card styles."

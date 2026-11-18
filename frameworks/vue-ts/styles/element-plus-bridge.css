@@ -1,0 +1,149 @@
+/* ==========================================================================
+   AUTO-GENERATED FROM core/tokens.json — Vue 3 Element Plus Notion Bridge
+   Distilled & upgraded from xju-OJ/frontend/src/styles/feiyue-theme.less
+   Supports both Light (:root) and Dark (.dark) themes automatically.
+   ========================================================================== */
+
+:root,
+.dark {
+  --el-color-primary: var(--color-primary);
+  --el-color-primary-light-3: color-mix(in srgb, var(--color-primary) 72%, var(--color-bg));
+  --el-color-primary-light-5: color-mix(in srgb, var(--color-primary) 52%, var(--color-bg));
+  --el-color-primary-light-7: color-mix(in srgb, var(--color-primary) 30%, var(--color-bg));
+  --el-color-primary-light-8: color-mix(in srgb, var(--color-primary) 18%, var(--color-bg));
+  --el-color-primary-light-9: var(--color-bg-subtle);
+  --el-color-primary-dark-2: var(--color-primary-hover);
+
+  --el-color-success: var(--status-success-fg);
+  --el-color-warning: var(--status-warning-fg);
+  --el-color-danger: var(--status-danger-fg);
+  --el-color-info: var(--cat-kaggle);
+
+  --el-text-color-primary: var(--color-text);
+  --el-text-color-regular: var(--color-text-muted);
+  --el-text-color-secondary: var(--color-text-faint);
+  --el-text-color-placeholder: var(--color-text-faint);
+
+  --el-border-color: var(--color-border);
+  --el-border-color-light: var(--color-border);
+  --el-border-color-lighter: var(--color-border);
+
+  --el-bg-color: var(--color-bg);
+  --el-bg-color-page: var(--color-bg);
+  --el-bg-color-overlay: var(--color-bg-elevated);
+  --el-fill-color: var(--color-bg-subtle);
+  --el-fill-color-light: var(--color-bg-subtle);
+  --el-fill-color-blank: var(--color-bg);
+
+  --el-box-shadow-light: var(--shadow-card);
+  --el-box-shadow: var(--shadow-panel);
+  --el-border-radius-base: var(--radius-sm);
+  --el-border-radius-small: var(--radius-xs);
+  --el-border-radius-round: var(--radius-pill);
+  --el-font-family: var(--font-sans);
+}
+
+.el-button {
+  min-height: 36px;
+  border-radius: var(--radius-sm);
+  border-color: var(--color-border);
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-weight: 500;
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    transform 150ms ease;
+}
+.el-button:hover {
+  color: var(--color-text);
+  border-color: var(--line-strong);
+  background: var(--bg-hover);
+}
+.el-button:active {
+  transform: scale(0.985);
+}
+.el-button--primary {
+  color: var(--color-primary-fg);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.el-button--primary:hover,
+.el-button--primary:focus {
+  color: var(--color-primary-fg);
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+.el-button--success {
+  color: var(--status-success-fg);
+  border-color: var(--status-success-border);
+  background: var(--status-success-bg);
+}
+.el-button--warning {
+  color: var(--status-warning-fg);
+  border-color: var(--status-warning-border);
+  background: var(--status-warning-bg);
+}
+.el-button--danger {
+  color: var(--status-danger-fg);
+  border-color: var(--status-danger-border);
+  background: var(--status-danger-bg);
+}
+
+.el-input__wrapper,
+.el-textarea__inner {
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  box-shadow: 0 0 0 1px var(--color-border) inset;
+  transition: box-shadow var(--transition), background-color var(--transition);
+}
+.el-input__wrapper:hover {
+  box-shadow: 0 0 0 1px var(--line-strong) inset;
+}
+.el-input__wrapper.is-focus,
+.el-textarea__inner:focus {
+  box-shadow:
+    0 0 0 1px var(--color-focus) inset,
+    0 0 0 3px color-mix(in srgb, var(--color-focus) 14%, transparent);
+}
+
+.el-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  box-shadow: var(--shadow-card);
+}
+.el-card__header {
+  border-bottom: 1px solid var(--color-border);
+  padding: 16px 20px;
+}
+
+.el-table {
+  --el-table-border-color: var(--color-border);
+  --el-table-header-bg-color: var(--color-bg-subtle);
+  --el-table-row-hover-bg-color: var(--color-bg-subtle);
+  color: var(--color-text);
+}
+.el-table th.el-table__cell {
+  color: var(--color-text-muted);
+  font-weight: 600;
+  background: var(--color-bg-subtle);
+}
+
+.el-tag {
+  border-radius: var(--radius-xs);
+  border-color: transparent;
+  font-weight: 500;
+}
+.el-tag--success { color: var(--status-success-fg); background: var(--status-success-bg); }
+.el-tag--warning { color: var(--status-warning-fg); background: var(--status-warning-bg); }
+.el-tag--danger  { color: var(--status-danger-fg);  background: var(--status-danger-bg); }
+.el-tag--info    { color: var(--status-neutral-fg); background: var(--status-neutral-bg); }
+
+.el-dialog {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  box-shadow: var(--shadow-dialog);
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Notion-Style FastAPI"
+  short_description: "FastAPI CamelModel, UtcDateTime, {detail} error & CursorPage kit"
+  default_prompt: "Scaffold or refactor this FastAPI service using the Notion-Style wire contract."

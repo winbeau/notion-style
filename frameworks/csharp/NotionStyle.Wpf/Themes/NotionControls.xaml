@@ -1,0 +1,121 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ======================================================================
+         NotionControls.xaml — Reusable WPF Styles (Light & Dark DynamicResource)
+         Distilled from FastFinder & Panthera.Terminal.App, unified onto Notion.*
+         ====================================================================== -->
+
+    <Style x:Key="NotionCardBorderStyle" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource Notion.Bg.Brush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Notion.Border.Brush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{DynamicResource Notion.Radius.Md}" />
+        <Setter Property="Padding" Value="16" />
+    </Style>
+
+    <Style x:Key="NotionSubtleCardBorderStyle" TargetType="Border" BasedOn="{StaticResource NotionCardBorderStyle}">
+        <Setter Property="Background" Value="{DynamicResource Notion.BgSubtle.Brush}" />
+    </Style>
+
+    <Style x:Key="NotionSerifHeadingStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource Notion.Font.Serif}" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource Notion.Text.Brush}" />
+    </Style>
+
+    <Style x:Key="NotionEyebrowTextStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource Notion.Font.Mono}" />
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource Notion.TextFaint.Brush}" />
+    </Style>
+
+    <Style x:Key="NotionMutedBodyStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource Notion.Font.Sans}" />
+        <Setter Property="FontSize" Value="13.5" />
+        <Setter Property="Foreground" Value="{DynamicResource Notion.TextMuted.Brush}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <Style x:Key="NotionPrimaryButtonStyle" TargetType="Button">
+        <Setter Property="MinHeight" Value="34" />
+        <Setter Property="Padding" Value="14,6" />
+        <Setter Property="FontFamily" Value="{DynamicResource Notion.Font.Sans}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource Notion.PrimaryFg.Brush}" />
+        <Setter Property="Background" Value="{DynamicResource Notion.Primary.Brush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="RootBorder"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{DynamicResource Notion.Radius.Sm}"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="RootBorder" Property="Background" Value="{DynamicResource Notion.PrimaryHover.Brush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="RootBorder" Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="NotionQuietButtonStyle" TargetType="Button">
+        <Setter Property="MinHeight" Value="34" />
+        <Setter Property="Padding" Value="12,6" />
+        <Setter Property="FontFamily" Value="{DynamicResource Notion.Font.Sans}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Foreground" Value="{DynamicResource Notion.Text.Brush}" />
+        <Setter Property="Background" Value="{DynamicResource Notion.Bg.Brush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Notion.Border.Brush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="RootBorder"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{DynamicResource Notion.Radius.Sm}"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="RootBorder" Property="Background" Value="{DynamicResource Notion.BgHover.Brush}" />
+                            <Setter TargetName="RootBorder" Property="BorderBrush" Value="{DynamicResource Notion.BorderStrong.Brush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="RootBorder" Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="NotionInputBoxStyle" TargetType="TextBox">
+        <Setter Property="MinHeight" Value="34" />
+        <Setter Property="Padding" Value="10,6" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="{DynamicResource Notion.Font.Sans}" />
+        <Setter Property="FontSize" Value="13.5" />
+        <Setter Property="Foreground" Value="{DynamicResource Notion.Text.Brush}" />
+        <Setter Property="Background" Value="{DynamicResource Notion.Bg.Brush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Notion.Border.Brush}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+</ResourceDictionary>

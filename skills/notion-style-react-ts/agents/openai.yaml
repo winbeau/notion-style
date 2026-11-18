@@ -1,0 +1,4 @@
+interface:
+  display_name: "Notion-Style React-TS"
+  short_description: "React + TypeScript + Tailwind + shadcn/ui Notion design kit"
+  default_prompt: "Style or scaffold this React + TypeScript app using Notion-Style tokens and components."

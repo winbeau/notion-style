@@ -1,0 +1,245 @@
+/* ==========================================================================
+   AUTO-GENERATED FROM core/tokens.json — DO NOT EDIT DIRECTLY
+   Run `pnpm tokens:build` (node scripts/build-tokens.mjs) after micro-tuning.
+   ========================================================================== */
+
+:root {
+  /* Surfaces */
+  --color-bg: #ffffff;
+  --color-bg-subtle: #f7f6f3;
+  --bg-hover: #f1f1ef;
+  --color-bg-elevated: #ffffff;
+  --brand-panel-grid: rgba(55, 53, 47, 0.06);
+  --brand-panel-glow-warm: rgba(217, 115, 13, 0.06);
+  --brand-panel-glow-cool: rgba(11, 110, 153, 0.05);
+
+  /* Text */
+  --color-text: #37352f;
+  --color-text-muted: #787774;
+  --color-text-faint: #9b9a97;
+
+  /* Borders */
+  --color-border: #edece9;
+  --line-strong: #dcdad4;
+
+  /* Brand & Focus */
+  --color-primary: #37352f;
+  --color-primary-hover: #25231f;
+  --color-primary-fg: #ffffff;
+  --color-link: #2383e2;
+  --color-focus: #2383e2;
+
+  /* Code & Highlight */
+  --code-inline-bg: rgba(135, 131, 120, 0.15);
+  --code-inline-fg: #eb5757;
+  --highlight-flash-bg: rgba(255, 213, 79, 0.45);
+
+  /* Charts */
+  --chart-blue: #2383e2;
+  --chart-teal: #34a896;
+  --chart-grid: #edece9;
+
+  /* Shadows */
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-panel: 0 8px 24px rgba(55, 53, 47, 0.06);
+  --shadow-dialog: 0 14px 40px rgba(55, 53, 47, 0.12);
+
+  /* 7 Semantic Categories */
+  --cat-research: #e03e3e;
+  --cat-course: #d9730d;
+  --cat-recommend: #9065b0;
+  --cat-competition: #b8405e;
+  --cat-kaggle: #0b6e99;
+  --cat-tools: #0f7b6c;
+  --cat-life: #b5926a;
+  --tag-research-bg: rgba(224, 62, 62, 0.12);
+  --tag-course-bg: rgba(217, 115, 13, 0.12);
+  --tag-recommend-bg: rgba(144, 101, 176, 0.12);
+  --tag-competition-bg: rgba(184, 64, 94, 0.12);
+  --tag-kaggle-bg: rgba(11, 110, 153, 0.12);
+  --tag-tools-bg: rgba(15, 123, 108, 0.12);
+  --tag-life-bg: rgba(181, 146, 106, 0.12);
+  --tag-tool-bg: var(--tag-tools-bg);
+
+  /* 4 Universal Status Triads (unifies AI diff / OJ status / notice) */
+  --status-success-fg: #0f5e54;
+  --status-success-bg: rgba(15, 123, 108, 0.12);
+  --status-success-border: rgba(15, 123, 108, 0.32);
+  --status-warning-fg: #d9730d;
+  --status-warning-bg: rgba(217, 115, 13, 0.12);
+  --status-warning-border: rgba(217, 115, 13, 0.32);
+  --status-danger-fg: #b91c1c;
+  --status-danger-bg: rgba(224, 62, 62, 0.12);
+  --status-danger-border: rgba(224, 62, 62, 0.32);
+  --status-neutral-fg: #787774;
+  --status-neutral-bg: rgba(155, 154, 151, 0.10);
+  --status-neutral-border: rgba(155, 154, 151, 0.28);
+  --ai-add-fg: var(--status-success-fg);
+  --ai-add-bg: var(--status-success-bg);
+  --ai-add-border: var(--status-success-border);
+  --ai-del-fg: var(--status-danger-fg);
+  --ai-del-bg: var(--status-danger-bg);
+  --ai-del-border: var(--status-danger-border);
+
+  /* shadcn/ui HSL Bridge (auto-derived from hex tokens) */
+  --background: 0 0% 100%;
+  --foreground: 45 8% 20%;
+  --card: 0 0% 100%;
+  --card-foreground: 45 8% 20%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 45 8% 20%;
+  --primary: 45 8% 20%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 45 20% 96%;
+  --secondary-foreground: 45 8% 20%;
+  --muted: 45 20% 96%;
+  --muted-foreground: 45 2% 46%;
+  --accent: 45 20% 96%;
+  --accent-foreground: 45 8% 20%;
+  --destructive: 0 72% 56%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 45 10% 92%;
+  --input: 45 10% 92%;
+  --ring: 45 2% 46%;
+
+  /* Typography */
+  --font-sans: 'Inter Tight', 'Geist', 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Source Serif 4', 'Noto Serif SC', Georgia, 'Songti SC', serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+  --ui-font-size: 15px;
+  --prose-font-size: 16px;
+  --line-height-ui: 1.5;
+  --line-height-prose: 1.75;
+
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 9999px;
+  --radius: 8px;
+
+  /* Motion & Layout */
+  --transition: 150ms ease;
+  --transition-spring: 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --layout-reading-width: 720px;
+  --layout-content-width: 1120px;
+  --layout-wide-width: 1400px;
+  --layout-header-height: 56px;
+  --size-target: 44px;
+
+  /* Legacy Short Aliases (xju-feiyue / xju-OJ compatibility) */
+  --bg: var(--color-bg);
+  --bg-soft: var(--color-bg-subtle);
+  --fg: var(--color-text);
+  --fg-muted: var(--color-text-muted);
+  --fg-faint: var(--color-text-faint);
+  --line: var(--color-border);
+  --link: var(--color-link);
+  --t-fast: var(--transition);
+  --font-ui: var(--font-sans);
+  --r-sm: var(--radius-xs);
+  --r-md: var(--radius-sm);
+  --r-lg: var(--radius-md);
+}
+
+.dark {
+  /* Surfaces */
+  --color-bg: #0d1117;
+  --color-bg-subtle: #161b22;
+  --bg-hover: #1c2128;
+  --color-bg-elevated: #21262d;
+  --brand-panel-grid: rgba(230, 237, 243, 0.05);
+  --brand-panel-glow-warm: rgba(210, 153, 34, 0.08);
+  --brand-panel-glow-cool: rgba(56, 139, 253, 0.08);
+
+  /* Text */
+  --color-text: #e6edf3;
+  --color-text-muted: #8b949e;
+  --color-text-faint: #6e7681;
+
+  /* Borders */
+  --color-border: #30363d;
+  --line-strong: #444c56;
+
+  /* Brand & Focus */
+  --color-primary: #388bfd;
+  --color-primary-hover: #58a6ff;
+  --color-primary-fg: #ffffff;
+  --color-link: #58a6ff;
+  --color-focus: #388bfd;
+
+  /* Code & Highlight */
+  --code-inline-bg: rgba(110, 118, 129, 0.22);
+  --code-inline-fg: #ff7b72;
+  --highlight-flash-bg: rgba(210, 153, 34, 0.35);
+
+  /* Charts */
+  --chart-blue: #58a6ff;
+  --chart-teal: #3fb950;
+  --chart-grid: #30363d;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.32), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --shadow-panel: 0 8px 24px rgba(0, 0, 0, 0.42);
+  --shadow-dialog: 0 16px 48px rgba(0, 0, 0, 0.56);
+
+  /* 7 Semantic Categories */
+  --cat-research: #f85149;
+  --cat-course: #d29922;
+  --cat-recommend: #bc8cff;
+  --cat-competition: #f778ba;
+  --cat-kaggle: #58a6ff;
+  --cat-tools: #3fb950;
+  --cat-life: #d4a76a;
+  --tag-research-bg: rgba(248, 81, 73, 0.16);
+  --tag-course-bg: rgba(210, 153, 34, 0.16);
+  --tag-recommend-bg: rgba(188, 140, 255, 0.16);
+  --tag-competition-bg: rgba(247, 120, 186, 0.16);
+  --tag-kaggle-bg: rgba(88, 166, 255, 0.16);
+  --tag-tools-bg: rgba(63, 185, 80, 0.16);
+  --tag-life-bg: rgba(212, 167, 106, 0.16);
+  --tag-tool-bg: var(--tag-tools-bg);
+
+  /* 4 Universal Status Triads (unifies AI diff / OJ status / notice) */
+  --status-success-fg: #3fb950;
+  --status-success-bg: rgba(63, 185, 80, 0.15);
+  --status-success-border: rgba(63, 185, 80, 0.35);
+  --status-warning-fg: #d29922;
+  --status-warning-bg: rgba(210, 153, 34, 0.15);
+  --status-warning-border: rgba(210, 153, 34, 0.35);
+  --status-danger-fg: #f85149;
+  --status-danger-bg: rgba(248, 81, 73, 0.15);
+  --status-danger-border: rgba(248, 81, 73, 0.35);
+  --status-neutral-fg: #8b949e;
+  --status-neutral-bg: rgba(110, 118, 129, 0.12);
+  --status-neutral-border: rgba(110, 118, 129, 0.30);
+  --ai-add-fg: var(--status-success-fg);
+  --ai-add-bg: var(--status-success-bg);
+  --ai-add-border: var(--status-success-border);
+  --ai-del-fg: var(--status-danger-fg);
+  --ai-del-bg: var(--status-danger-bg);
+  --ai-del-border: var(--status-danger-border);
+
+  /* shadcn/ui HSL Bridge (auto-derived from hex tokens) */
+  --background: 216 28% 7%;
+  --foreground: 208 35% 93%;
+  --card: 215 21% 11%;
+  --card-foreground: 208 35% 93%;
+  --popover: 215 15% 15%;
+  --popover-foreground: 208 35% 93%;
+  --primary: 215 98% 61%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 215 21% 11%;
+  --secondary-foreground: 208 35% 93%;
+  --muted: 215 21% 11%;
+  --muted-foreground: 212 9% 58%;
+  --accent: 215 21% 11%;
+  --accent-foreground: 208 35% 93%;
+  --destructive: 3 93% 63%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 212 12% 21%;
+  --input: 212 12% 21%;
+  --ring: 215 98% 61%;
+}

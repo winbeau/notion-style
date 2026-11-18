@@ -1,0 +1,4 @@
+interface:
+  display_name: "Notion-Style Core"
+  short_description: "Cross-framework Notion warm-paper light & neutral dark design paradigm"
+  default_prompt: "Apply the Notion-Style core token and typography paradigm to this project."

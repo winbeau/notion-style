@@ -1,0 +1,4 @@
+interface:
+  display_name: "Notion-Style C# WPF"
+  short_description: ".NET 8 WPF/WinUI XAML ResourceDictionaries, MVVM & API client"
+  default_prompt: "Apply Notion-Style XAML ResourceDictionaries and DynamicResource styles to this C# WPF app."

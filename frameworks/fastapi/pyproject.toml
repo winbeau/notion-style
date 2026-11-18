@@ -1,0 +1,13 @@
+[project]
+name = "notion-style-api"
+version = "1.0.0"
+description = "Reusable FastAPI foundation matching the Notion-Style wire contract (CamelModel, UtcDateTime, {detail} errors, CursorPage, HardenedStaticFiles, SSE)."
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.0",
+    "pydantic>=2.9.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

@@ -1,0 +1,40 @@
+/* ==========================================================================
+   scrollbar-notion.css — Notion 胶囊细滚动条 (Light + Dark 自动适配)
+   ----------------------------------------------------------------------------
+   默认透明隐形，悬停容器淡入胶囊滑块，3px 透明内缩留白。
+   ========================================================================== */
+
+.scrollbar-notion::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.scrollbar-notion::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-notion::-webkit-scrollbar-thumb {
+  background: transparent;
+  border: 3px solid transparent;
+  border-radius: 9999px;
+  background-clip: padding-box;
+}
+
+.scrollbar-notion:hover::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  background-clip: padding-box;
+}
+
+.scrollbar-notion::-webkit-scrollbar-thumb:hover {
+  background: var(--line-strong);
+  background-clip: padding-box;
+}
+
+.scrollbar-notion {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.scrollbar-notion:hover {
+  scrollbar-color: var(--color-border) transparent;
+}
